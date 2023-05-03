@@ -16,6 +16,12 @@ export class Searchbar extends Component {
     event.preventDefault();
     // this.setState({search: event.target.input.value})
     console.log(this.state.search);
+    this.reset();
+
+  }
+  reset = () => {
+    this.setState({ search: '' })
+    console.log("in reset")
   }
   render() {
     // console.log(event.target);
