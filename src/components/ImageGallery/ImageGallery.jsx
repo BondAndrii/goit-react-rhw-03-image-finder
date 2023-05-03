@@ -2,7 +2,7 @@ import React from "react"
 
 export const ImageGallery = () => {
   return (
-    <ul class="gallery">
+    <ul className="gallery">
       <li>
         <p>Тут будуть лішки</p>
       </li>
