@@ -1,4 +1,10 @@
+import React from "react"
 
-<li class="gallery-item">
-  <img src="" alt="" />
-</li>
+export const ImageGalleryItem = () => {
+  return (
+    <li class="gallery-item">
+      <img src="" alt="" />
+    </li>
+  )
+}
+

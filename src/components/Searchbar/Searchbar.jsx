@@ -1,4 +1,8 @@
-<header class="searchbar">
+import React from "react"
+
+export const Searchbar = () => {
+  return (
+    <header class="searchbar">
   <form class="form">
     <button type="submit" class="button">
       <span class="button-label">Search</span>
@@ -13,3 +17,6 @@
     />
   </form>
 </header>
+  )
+}
+

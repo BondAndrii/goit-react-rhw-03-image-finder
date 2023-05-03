@@ -1,3 +1,11 @@
-<ul class="gallery">
-  <!-- Набір <li> із зображеннями -->
-</ul>
+import React from "react"
+
+export const ImageGallery = () => {
+  return (
+    <ul class="gallery">
+      <li>
+        <p>Тут будуть лішки</p>
+      </li>
+    </ul>
+  )
+}
