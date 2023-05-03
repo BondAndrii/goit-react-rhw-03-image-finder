@@ -11,23 +11,16 @@ export class Searchbar extends Component {
     console.log("onChange", event.currentTarget.value)
 
   }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // this.setState({search: event.target.input.value})
-    console.log(this.state.search);
-    this.reset();
-
-  }
-  reset = () => {
-    this.setState({ search: '' })
-    console.log("in reset")
+  handleSubmit = () => {
+    const {search} = this.state
+    this.props.onSubmit(search)
   }
   render() {
-    // console.log(event.target);
+    const { onSubmit } = this.props;
+    console.log('in searchbar', this.props)
     return (
     <header className={style.Searchbar}>
-      <form className={style.SearchForm} onSubmit={this.handleSubmit}>
+      <form className={style.SearchForm} onSubmit={onSubmit}>
         <button type="submit" className={style.SearchFormButton}>
           <span className={style.SearchFormButtonLabel}>Search</span>
         </button>
