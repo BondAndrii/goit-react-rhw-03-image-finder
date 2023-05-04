@@ -8,7 +8,7 @@ export class Searchbar extends Component {
   }
   handleChange = event => {
     this.setState({search: event.target.value})
-    console.log("onChange", event.currentTarget.value)
+    
 
   }
   handleSubmit = (event) => {
@@ -22,8 +22,7 @@ export class Searchbar extends Component {
         this.setState({search: ''})
     }
   render() {
-    // const { onSubmit } = this.props;
-    console.log('in searchbar', this.props)
+   
     return (
     <header className={style.Searchbar}>
       <form className={style.SearchForm} onSubmit={this.handleSubmit}>
