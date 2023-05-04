@@ -9,17 +9,13 @@ export class App extends Component {
     search:''
   }
 
-  handleSubmit = (search) => {
-    // event.preventDefault();
-    this.setState({search})
+  handleSubmit = (search) => {   
+    
+    this.setState({ search })
     
 
   }
 
-  // reset = () => {
-  //   this.setState({ search: '' })
-  //   console.log("in reset")
-  // } 
 
   render() {
     console.log("in render", this.state)
