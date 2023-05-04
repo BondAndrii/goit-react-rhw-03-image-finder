@@ -1,11 +1,12 @@
 import React from "react"
 
-export const ImageGallery = () => {
+import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem"
+
+export const ImageGallery = ({pictures}) => {
+  console.log("in imagegallery", pictures)
   return (
     <ul className="gallery">
-      <li>
-        <p>Тут будуть лішки</p>
-      </li>
+      {pictures.map(picture => <ImageGalleryItem key={ picture.id} picture={picture} /> )}
     </ul>
   )
 }

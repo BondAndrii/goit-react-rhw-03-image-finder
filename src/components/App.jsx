@@ -30,12 +30,7 @@ export class App extends Component {
       this.setState({pictures: data.hits})
     } catch (error) {
       console.log(error);
-    }
-    
-      
-    
-    
-    
+    } 
   }
   handleSubmit = (search) => {       
     this.setState({ search })   
@@ -47,9 +42,8 @@ export class App extends Component {
     console.log("in render", pictures);
     return (
       <div>        
-        <Searchbar onSubmit={this.handleSubmit} />
-        
-        <ImageGallery/>
+        <Searchbar onSubmit={this.handleSubmit} />        
+        <ImageGallery pictures={ pictures} />
       </div>
   );
   }

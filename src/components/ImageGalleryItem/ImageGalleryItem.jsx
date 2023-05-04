@@ -1,10 +1,11 @@
 import React from "react"
 
-export const ImageGalleryItem = () => {
+export const ImageGalleryItem = ({picture}) => {
+  const { id, previewURL, tags } = picture;
   return (
-    <li class="gallery-item">
-      <img src="" alt="" />
-    </li>
-  )
+          <li key={id} className="gallery-item">
+            <img src={previewURL} alt={tags} />
+          </li>
+        )
 }
 
