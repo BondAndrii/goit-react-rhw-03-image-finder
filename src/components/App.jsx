@@ -1,12 +1,16 @@
 import React, {Component} from "react";
 
-import axios from "axios";
+// import axios from "axios";
+
+import { api } from "servises/api";
 
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 
 import { Searchbar } from "./Searchbar/Searchbar";
 
 import { Modal } from "./Modal/Modal";
+
+import { Button } from "./Button/Button";
 
 
 export class App extends Component {
@@ -15,44 +19,50 @@ export class App extends Component {
     pictures: [],
     status: "",
     forModal: {},
+    page: 1,
   }
-  componentDidMount() {
-    console.log("componentDidMount")
+  componentDidMount() {   
     
   }
   async componentDidUpdate(_, prevState) {
-    const { search } = this.state;   
-    const key = '28720978-48527d1c9d73f1bfd555e68c2';     
-    try {
-      const { data } = await axios.get(`https://pixabay.com/api/?q=${search}&page=1&key=${key}&image_type=photo&orientation=horizontal&per_page=4`)
-      console.log(data.hits)
-      if (prevState.search !== search)
-      this.setState({pictures: data.hits})
-    } catch (error) {
-      console.log(error);
-    } 
+    const { search, page, pictures} = this.state; 
+    console.log("in componentDidUpdate", this.state)
+    // const key = '28720978-48527d1c9d73f1bfd555e68c2'; 
+    if (prevState.search !== search || prevState.page !== page) 
+      try {
+        api.getPictures(search, page).then(pict => {
+          const { data } = pict;
+          this.setState({ pictures: [...data.hits, ...pictures]})
+        } )      
+      } catch (error) {
+        console.log(error);      
+    }
+      
   }
   handleSubmit = (search) => {       
     this.setState({ search })   
 
   }
   handleShowModal = (forModal) => {
-    console.log("приход с итема", forModal);
+    
     this.setState({ forModal, status: "modal" })    
   }
   handleCloseModal = () => {
     this.setState({status: "",})
   }
+  handleTurnPages = (prevState) => {
+    // const { page } = this.state;
+    this.setState(prevState => ({ page: prevState.page + 1 }))
+  }
   render() {
-    const { pictures, forModal } = this.state;
+    const { pictures, forModal } = this.state;   
     
-    // console.log("in render", pictures);
-    console.log("in render", this.state);
     return (
       <div>        
         <Searchbar onSubmit={this.handleSubmit} />        
         <ImageGallery pictures={pictures} onClick={this.handleShowModal} />
         {this.state.status.includes("modal") && <Modal bigPic={forModal} onClose={this.handleCloseModal} />}
+        <Button onClick={ this.handleTurnPages} />
       </div>
   );
   }
